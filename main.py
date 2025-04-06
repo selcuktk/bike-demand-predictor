@@ -2,14 +2,16 @@ import numpy as np
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import MinMaxScaler
 from tensorflow.keras import layers
-from tensorflow import keras      
+from tensorflow import keras
+
 
 class Main:
     @staticmethod
     def main():
 
         # Load raw data
-        data = np.genfromtxt('bike_sharing_demand.csv', delimiter=',', dtype=str, skip_header=1)
+        data = np.genfromtxt('bike_sharing_demand.csv',
+                             delimiter=',', dtype=str, skip_header=1)
 
         # Get all columns
         datetime = data[:, 0]
@@ -34,8 +36,9 @@ class Main:
         print(month.shape)
         print(year.shape)
 
-        X = np.stack([hour, day, month, year, season, holiday, workingday, weather, temp, atemp, humidity, windspeed], axis=1)
-        
+        X = np.stack([hour, day, month, year, season, holiday, workingday,
+                     weather, temp, atemp, humidity, windspeed], axis=1)
+
         # Convert to float32 to reduce computation cost
         X = X.astype("float32")
         Y = count.astype("float32")
@@ -45,13 +48,13 @@ class Main:
 
         # Normalize features using Min-Max Scaling
         scaler = MinMaxScaler()
-        X = scaler.fit_transform(X)        
+        X = scaler.fit_transform(X)
 
         # First, split into training (70%) and temp (30%) which will be used for dev + test
         x_train, x_test, y_train, y_test = train_test_split(
-            X, Y, test_size=0.2, random_state=42)   
-        
-	    # Sequential API (Very convenient, not very flexible)
+            X, Y, test_size=0.2, random_state=42)
+
+        # Sequential API (Very convenient, not very flexible)
         starter_model = keras.Sequential(
             [
                 layers.Dense(512, activation='relu'),
@@ -76,14 +79,13 @@ class Main:
 
         starter_model.evaluate(x_test, y_test, verbose=2)
 
-        starter_model.summary()         
+        starter_model.summary()
 
         mean_true = np.mean(y_train)
         mean_true2 = np.mean(y_test)
 
         print(str(mean_true) + ": average value of target for TRAIN examples")
         print(str(mean_true2) + ": average value of target for TEST examples")
-        
 
 
 # Convert datetime string to hour, day, month, year
@@ -102,6 +104,6 @@ def extract_datetime_features(datetime_column):
         years.append(year)
     return np.array(hours), np.array(days), np.array(months), np.array(years)
 
+
 if __name__ == "__main__":
     Main.main()
-
