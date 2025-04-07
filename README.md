@@ -119,3 +119,8 @@ Firstly, one starter model is implemented and the path on the recipe is followed
 ![stats4](https://github.com/user-attachments/assets/a9c5899b-f003-4b17-ae3a-c0f9db1c6339)
 
 After regularization steps, it can be fairly said that high variance situation is fixed, mean squared error value of test is higher compared to train data. It means predictions of train is more stable compared to test. Having higher standard deviation on the errors is normal for a test data compared to training data.
+
+4. [Tuning Process](https://youtu.be/AXDByU3D1hA?si=CZ0ooK_WZxECV-Lo)
+![tuning](https://github.com/user-attachments/assets/7c0a323c-cef8-4396-8cbd-e7ab90490a11)
+- Considering the source above, following 6 new model are created.
+![models](https://github.com/user-attachments/assets/eb8f67f2-728b-4501-a01e-f8c68281064b)
