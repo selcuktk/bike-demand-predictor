@@ -55,6 +55,7 @@ class Main:
             X, Y, test_size=0.2, random_state=42)
 
         # Sequential API (Very convenient, not very flexible)
+        print("Starter Model:")
         starter_model = keras.Sequential(
             [
                 layers.Dense(512, activation='relu',
@@ -81,17 +82,200 @@ class Main:
             metrics=['mae'],
         )
         starter_model.fit(x_train, y_train,
-                          batch_size=32, epochs=500, verbose=2)
+                          batch_size=32, epochs=500, verbose=0)
 
+        starter_model.evaluate(x_train, y_train, verbose=2)
         starter_model.evaluate(x_test, y_test, verbose=2)
 
-        starter_model.summary()
+        model_02 = keras.Sequential(
+            [
+                layers.Dense(512, activation='relu',
+                             kernel_regularizer=keras.regularizers.l2(0.001)),
+                layers.Dropout(0.3),
 
-        mean_true = np.mean(y_train)
-        mean_true2 = np.mean(y_test)
+                layers.Dense(256, activation='relu',
+                             kernel_regularizer=keras.regularizers.l2(0.001)),
+                layers.Dropout(0.3),
 
-        print(str(mean_true) + ": average value of target for TRAIN examples")
-        print(str(mean_true2) + ": average value of target for TEST examples")
+                layers.Dense(32, activation='relu',
+                             kernel_regularizer=keras.regularizers.l2(0.001)),
+
+                layers.Dense(8, activation='relu',
+                             kernel_regularizer=keras.regularizers.l2(0.001)),
+
+                layers.Dense(1)
+            ]
+        )
+        print("Model 02:")
+        model_02.compile(
+            loss='mean_squared_error',
+            optimizer=keras.optimizers.Adam(learning_rate=0.001),
+            metrics=['mae'],
+        )
+        model_02.fit(x_train, y_train,
+                     batch_size=32, epochs=500, verbose=0)
+
+        model_02.evaluate(x_train, y_train, verbose=2)
+        model_02.evaluate(x_test, y_test, verbose=2)
+
+        model_03 = keras.Sequential(
+            [
+                layers.Dense(512, activation='relu',
+                             kernel_regularizer=keras.regularizers.l2(0.001)),
+                layers.Dropout(0.3),
+
+                layers.Dense(256, activation='relu',
+                             kernel_regularizer=keras.regularizers.l2(0.001)),
+                layers.Dropout(0.3),
+
+                layers.Dense(32, activation='relu',
+                             kernel_regularizer=keras.regularizers.l2(0.001)),
+
+                layers.Dense(8, activation='relu',
+                             kernel_regularizer=keras.regularizers.l2(0.001)),
+
+                layers.Dense(1)
+            ]
+        )
+        print("Model 03:")
+        model_03.compile(
+            loss='mean_squared_error',
+            optimizer=keras.optimizers.Adam(learning_rate=0.005),
+            metrics=['mae'],
+        )
+        model_03.fit(x_train, y_train,
+                     batch_size=32, epochs=500, verbose=0)
+
+        model_03.evaluate(x_train, y_train, verbose=2)
+        model_03.evaluate(x_test, y_test, verbose=2)
+
+        print("Model 04:")
+        model_04 = keras.Sequential(
+            [
+                layers.Dense(512, activation='relu',
+                             kernel_regularizer=keras.regularizers.l2(0.001)),
+                layers.Dropout(0.3),
+
+                layers.Dense(256, activation='relu',
+                             kernel_regularizer=keras.regularizers.l2(0.001)),
+                layers.Dropout(0.3),
+
+                layers.Dense(32, activation='relu',
+                             kernel_regularizer=keras.regularizers.l2(0.001)),
+
+                layers.Dense(8, activation='relu',
+                             kernel_regularizer=keras.regularizers.l2(0.001)),
+
+                layers.Dense(1)
+            ]
+        )
+
+        model_04.compile(
+            loss='mean_squared_error',
+            optimizer=keras.optimizers.Adam(learning_rate=0.0005),
+            metrics=['mae'],
+        )
+        model_04.fit(x_train, y_train,
+                     batch_size=1024, epochs=500, verbose=0)
+
+        model_04.evaluate(x_train, y_train, verbose=2)
+        model_04.evaluate(x_test, y_test, verbose=2)
+
+        print("Model 05:")
+        model_05 = keras.Sequential(
+            [
+                layers.Dense(512, activation='relu',
+                             kernel_regularizer=keras.regularizers.l2(0.001)),
+                layers.Dropout(0.3),
+
+                layers.Dense(256, activation='relu',
+                             kernel_regularizer=keras.regularizers.l2(0.001)),
+                layers.Dropout(0.3),
+
+                layers.Dense(32, activation='relu',
+                             kernel_regularizer=keras.regularizers.l2(0.001)),
+
+                layers.Dense(8, activation='relu',
+                             kernel_regularizer=keras.regularizers.l2(0.001)),
+
+                layers.Dense(1)
+            ]
+        )
+
+        model_05.compile(
+            loss='mean_squared_error',
+            optimizer=keras.optimizers.Adam(learning_rate=0.0005),
+            metrics=['mae'],
+        )
+        model_05.fit(x_train, y_train,
+                     batch_size=256, epochs=500, verbose=0)
+
+        model_05.evaluate(x_train, y_train, verbose=2)
+        model_05.evaluate(x_test, y_test, verbose=2)
+
+        print("Model 06:")
+        model_06 = keras.Sequential(
+            [
+                layers.Dense(256, activation='relu',
+                             kernel_regularizer=keras.regularizers.l2(0.001)),
+                layers.Dropout(0.3),
+
+                layers.Dense(128, activation='relu',
+                             kernel_regularizer=keras.regularizers.l2(0.001)),
+                layers.Dropout(0.3),
+
+                layers.Dense(16, activation='relu',
+                             kernel_regularizer=keras.regularizers.l2(0.001)),
+
+                layers.Dense(4, activation='relu',
+                             kernel_regularizer=keras.regularizers.l2(0.001)),
+
+                layers.Dense(1)
+            ]
+        )
+
+        model_06.compile(
+            loss='mean_squared_error',
+            optimizer=keras.optimizers.Adam(learning_rate=0.0005),
+            metrics=['mae'],
+        )
+        model_06.fit(x_train, y_train,
+                     batch_size=32, epochs=500, verbose=0)
+
+        model_06.evaluate(x_train, y_train, verbose=2)
+        model_06.evaluate(x_test, y_test, verbose=2)
+
+        print("Model 07:")
+        model_07 = keras.Sequential(
+            [
+                layers.Dense(1024, activation='relu',
+                             kernel_regularizer=keras.regularizers.l2(0.001)),
+                layers.Dropout(0.3),
+
+                layers.Dense(512, activation='relu',
+                             kernel_regularizer=keras.regularizers.l2(0.001)),
+                layers.Dropout(0.3),
+
+                layers.Dense(64, activation='relu',
+                             kernel_regularizer=keras.regularizers.l2(0.001)),
+
+                layers.Dense(16, activation='relu',
+                             kernel_regularizer=keras.regularizers.l2(0.001)),
+
+                layers.Dense(1)
+            ]
+        )
+
+        model_07.compile(
+            loss='mean_squared_error',
+            optimizer=keras.optimizers.Adam(learning_rate=0.0005),
+            metrics=['mae'],
+        )
+        model_07.fit(x_train, y_train,
+                     batch_size=32, epochs=500, verbose=0)
+
+        model_07.evaluate(x_train, y_train, verbose=2)
+        model_07.evaluate(x_test, y_test, verbose=2)
 
 
 # Convert datetime string to hour, day, month, year
