@@ -55,7 +55,7 @@ class Main:
             X, Y, test_size=0.2, random_state=42)
 
         # Sequential API (Very convenient, not very flexible)
-        print("Starter Model:")
+
         starter_model = keras.Sequential(
             [
                 layers.Dense(512, activation='relu',
@@ -84,7 +84,10 @@ class Main:
         starter_model.fit(x_train, y_train,
                           batch_size=32, epochs=500, verbose=0)
 
+        print("Starter Model:")
+        print("Starter Model Training Results:")
         starter_model.evaluate(x_train, y_train, verbose=2)
+        print("Starter Model Test Results")
         starter_model.evaluate(x_test, y_test, verbose=2)
 
         model_02 = keras.Sequential(
@@ -106,7 +109,7 @@ class Main:
                 layers.Dense(1)
             ]
         )
-        print("Model 02:")
+
         model_02.compile(
             loss='mean_squared_error',
             optimizer=keras.optimizers.Adam(learning_rate=0.001),
@@ -114,8 +117,10 @@ class Main:
         )
         model_02.fit(x_train, y_train,
                      batch_size=32, epochs=500, verbose=0)
-
+        print("Model 02:")
+        print("Model 02 Training Results:")
         model_02.evaluate(x_train, y_train, verbose=2)
+        print("Model 02 Test Results:")
         model_02.evaluate(x_test, y_test, verbose=2)
 
         model_03 = keras.Sequential(
@@ -137,7 +142,7 @@ class Main:
                 layers.Dense(1)
             ]
         )
-        print("Model 03:")
+
         model_03.compile(
             loss='mean_squared_error',
             optimizer=keras.optimizers.Adam(learning_rate=0.005),
@@ -146,10 +151,12 @@ class Main:
         model_03.fit(x_train, y_train,
                      batch_size=32, epochs=500, verbose=0)
 
+        print("Model 03:")
+        print("Model 03 Training Results:")
         model_03.evaluate(x_train, y_train, verbose=2)
+        print("Model 03 Test Results:")
         model_03.evaluate(x_test, y_test, verbose=2)
 
-        print("Model 04:")
         model_04 = keras.Sequential(
             [
                 layers.Dense(512, activation='relu',
@@ -178,10 +185,12 @@ class Main:
         model_04.fit(x_train, y_train,
                      batch_size=1024, epochs=500, verbose=0)
 
+        print("Model 04:")
+        print("Model 04 Training Results:")
         model_04.evaluate(x_train, y_train, verbose=2)
+        print("Model 04 Test Results:")
         model_04.evaluate(x_test, y_test, verbose=2)
 
-        print("Model 05:")
         model_05 = keras.Sequential(
             [
                 layers.Dense(512, activation='relu',
@@ -210,10 +219,12 @@ class Main:
         model_05.fit(x_train, y_train,
                      batch_size=256, epochs=500, verbose=0)
 
+        print("Model 05:")
+        print("Model 05 Training Results:")
         model_05.evaluate(x_train, y_train, verbose=2)
+        print("Model 05 Test Results:")
         model_05.evaluate(x_test, y_test, verbose=2)
 
-        print("Model 06:")
         model_06 = keras.Sequential(
             [
                 layers.Dense(256, activation='relu',
@@ -241,11 +252,12 @@ class Main:
         )
         model_06.fit(x_train, y_train,
                      batch_size=32, epochs=500, verbose=0)
-
+        print("Model 06:")
+        print("Model 06 Training Results:")
         model_06.evaluate(x_train, y_train, verbose=2)
+        print("Model 06 Test Results:")
         model_06.evaluate(x_test, y_test, verbose=2)
 
-        print("Model 07:")
         model_07 = keras.Sequential(
             [
                 layers.Dense(1024, activation='relu',
@@ -273,8 +285,10 @@ class Main:
         )
         model_07.fit(x_train, y_train,
                      batch_size=32, epochs=500, verbose=0)
-
+        print("Model 07:")
+        print("Model 07 Training Results:")
         model_07.evaluate(x_train, y_train, verbose=2)
+        print("Model 07 Test Results:")
         model_07.evaluate(x_test, y_test, verbose=2)
 
 
