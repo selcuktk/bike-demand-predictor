@@ -5,14 +5,6 @@
 Bike Demand Predictor is a deep learning project designed to estimate number of bikes would be rented under given conditions at specific time. **This project was developed to demonstrate the programmer's knowledge of the machine learning projects process and how they apply it.** Additionally, at the end of the project, the created classifiers are evaluated.
 
 
-
-
-
-
-
-
-
-
 ## Features
 
 - **No Backend/Frontend:** A lightweight solution focused solely on the deep learning model.
@@ -97,3 +89,26 @@ This approach is based on two fundamental principles: a structured recipe and or
 ![orthogonalization-notes](https://github.com/user-attachments/assets/56ee576e-99b5-41bf-a740-a87fcf4a2262)
 
 Firstly, one starter model is implemented and the path on the recipe is followed considering orthogonalization logic in the notes. After creating the starter classifier, considering parameters, different versions of it, are created.
+
+1. Features of the starter model:
+
+| Feature              | Details                          |
+|---------------------|---------------------------------|
+| Architecture        | Fully Connected (Dense) Layers  |
+| Layers (Neurons)    | 512 → 256 → 32 → 8 → 1 (Output) |
+| Activation Function | ReLU (All layers except output)  |
+| Output Activation   | None (Linear Output)             |
+| Optimizer           | Adam                             |
+| Learning Rate       | 0.0005                           |
+| Loss Function       | Mean Squared Error (MSE)         |
+| Evaluation Metric   | Mean Absolute Error (MAE)        |
+| Mini-batch Size     | 32                               |
+
+2. The following results are for the starter model:
+
+![stats](https://github.com/user-attachments/assets/0f137007-7a29-4179-9bff-66a7c9ea4ede)
+![stats2](https://github.com/user-attachments/assets/288b2e84-cbc0-431e-ad46-3e84928d49c8)
+
+- Bayes error is unknown because of some factors. Nature of data, it is collected from real world and this collected data can be affected from some random events and it causes noise. Moreover, even with the perfect features human decisions to rent bikes are not deterministic. Two identical days may yield different rental counts. The goal is to reduce the avoidable error (bias + variance), but accept the existence of irreducible noise.
+
+- On the other hand, considering statistics, it can be said that the starter model is fitted well on training set. However there is variance problem. Because mean absolute error of test data is 116% more than mean absolute error of train data.
