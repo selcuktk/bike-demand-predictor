@@ -57,15 +57,21 @@ class Main:
         # Sequential API (Very convenient, not very flexible)
         starter_model = keras.Sequential(
             [
-                layers.Dense(512, activation='relu'),
+                layers.Dense(512, activation='relu',
+                             kernel_regularizer=keras.regularizers.l2(0.001)),
+                layers.Dropout(0.3),
 
-                layers.Dense(256, activation='relu'),
+                layers.Dense(256, activation='relu',
+                             kernel_regularizer=keras.regularizers.l2(0.001)),
+                layers.Dropout(0.3),
 
-                layers.Dense(32, activation='relu'),
+                layers.Dense(32, activation='relu',
+                             kernel_regularizer=keras.regularizers.l2(0.001)),
 
-                layers.Dense(8, activation='relu'),
+                layers.Dense(8, activation='relu',
+                             kernel_regularizer=keras.regularizers.l2(0.001)),
 
-                layers.Dense(1),
+                layers.Dense(1)
             ]
         )
 
