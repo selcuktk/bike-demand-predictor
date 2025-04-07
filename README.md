@@ -111,4 +111,6 @@ Firstly, one starter model is implemented and the path on the recipe is followed
 
 - Bayes error is unknown because of some factors. Nature of data, it is collected from real world and this collected data can be affected from some random events and it causes noise. Moreover, even with the perfect features human decisions to rent bikes are not deterministic. Two identical days may yield different rental counts. The goal is to reduce the avoidable error (bias + variance), but accept the existence of irreducible noise.
 
-- On the other hand, considering statistics, it can be said that the starter model is fitted well on training set. However there is variance problem. Because mean absolute error of test data is 116% more than mean absolute error of train data.
+- On the other hand, it can be said that the starter model is fitted well on training set (MAE ~13 is pretty small considering the average target is ~191). However there is variance problem. Because mean absolute error of test data is 116% more than mean absolute error of train data.
+
+3. According to the mentioned recipe, there are 3 options more data, regularization or different NN architectures. For this step regularization will be applied on the model.
