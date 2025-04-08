@@ -3,7 +3,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import MinMaxScaler
 from tensorflow.keras import layers
 from tensorflow import keras
-
+import matplotlib.pyplot as plt
 
 class Main:
     @staticmethod
@@ -81,14 +81,18 @@ class Main:
             optimizer=keras.optimizers.Adam(learning_rate=0.0005),
             metrics=['mae'],
         )
-        starter_model.fit(x_train, y_train,
-                          batch_size=32, epochs=500, verbose=0)
+
+        history_starter = starter_model.fit(x_train, y_train,
+                                    batch_size=32, epochs=500, verbose=0)
 
         print("Starter Model:")
         print("Starter Model Training Results:")
         starter_model.evaluate(x_train, y_train, verbose=2)
         print("Starter Model Test Results")
         starter_model.evaluate(x_test, y_test, verbose=2)
+
+        print(history_starter.history.keys())
+
 
         model_02 = keras.Sequential(
             [
@@ -115,8 +119,9 @@ class Main:
             optimizer=keras.optimizers.Adam(learning_rate=0.001),
             metrics=['mae'],
         )
-        model_02.fit(x_train, y_train,
-                     batch_size=32, epochs=500, verbose=0)
+        
+        history_model_02 = model_02.fit(x_train, y_train,
+                                batch_size=32, epochs=500, verbose=0)
         print("Model 02:")
         print("Model 02 Training Results:")
         model_02.evaluate(x_train, y_train, verbose=2)
@@ -148,8 +153,9 @@ class Main:
             optimizer=keras.optimizers.Adam(learning_rate=0.005),
             metrics=['mae'],
         )
-        model_03.fit(x_train, y_train,
-                     batch_size=32, epochs=500, verbose=0)
+
+        history_model_03 = model_03.fit(x_train, y_train,
+                                batch_size=32, epochs=500, verbose=0)
 
         print("Model 03:")
         print("Model 03 Training Results:")
@@ -182,8 +188,9 @@ class Main:
             optimizer=keras.optimizers.Adam(learning_rate=0.0005),
             metrics=['mae'],
         )
-        model_04.fit(x_train, y_train,
-                     batch_size=1024, epochs=500, verbose=0)
+
+        history_model_04 = model_04.fit(x_train, y_train,
+                                batch_size=1024, epochs=500, verbose=0)
 
         print("Model 04:")
         print("Model 04 Training Results:")
@@ -216,8 +223,9 @@ class Main:
             optimizer=keras.optimizers.Adam(learning_rate=0.0005),
             metrics=['mae'],
         )
-        model_05.fit(x_train, y_train,
-                     batch_size=256, epochs=500, verbose=0)
+
+        history_model_05 = model_05.fit(x_train, y_train,
+                                batch_size=256, epochs=500, verbose=0)
 
         print("Model 05:")
         print("Model 05 Training Results:")
@@ -250,8 +258,9 @@ class Main:
             optimizer=keras.optimizers.Adam(learning_rate=0.0005),
             metrics=['mae'],
         )
-        model_06.fit(x_train, y_train,
-                     batch_size=32, epochs=500, verbose=0)
+
+        history_model_06 = model_06.fit(x_train, y_train,
+                                batch_size=32, epochs=500, verbose=0)
         print("Model 06:")
         print("Model 06 Training Results:")
         model_06.evaluate(x_train, y_train, verbose=2)
@@ -283,13 +292,51 @@ class Main:
             optimizer=keras.optimizers.Adam(learning_rate=0.0005),
             metrics=['mae'],
         )
-        model_07.fit(x_train, y_train,
-                     batch_size=32, epochs=500, verbose=0)
+        history_model_07 = model_07.fit(x_train, y_train,
+                                batch_size=32, epochs=500, verbose=0)
         print("Model 07:")
         print("Model 07 Training Results:")
         model_07.evaluate(x_train, y_train, verbose=2)
         print("Model 07 Test Results:")
         model_07.evaluate(x_test, y_test, verbose=2)
+
+        # MAE Plot
+        plt.figure(figsize=(10, 6))
+        plt.title("MAE through Epochs for All Models")
+        plt.xlabel("Epochs")
+        plt.ylabel("MAE")
+
+        plt.plot(history_starter.history['mae'], label='Starter Model')
+        plt.plot(history_model_02.history['mae'], label='Model 02')
+        plt.plot(history_model_03.history['mae'], label='Model 03')
+        plt.plot(history_model_04.history['mae'], label='Model 04')
+        plt.plot(history_model_05.history['mae'], label='Model 05')
+        plt.plot(history_model_06.history['mae'], label='Model 06')
+        plt.plot(history_model_07.history['mae'], label='Model 07')
+
+        plt.legend()
+        plt.grid(True)
+        plt.tight_layout()
+        plt.show()
+
+        # MSE Plot
+        plt.figure(figsize=(10, 6))
+        plt.title("MSE through Epochs for All Models")
+        plt.xlabel("Epochs")
+        plt.ylabel("MSE")
+
+        plt.plot(history_starter.history['loss'], label='Starter Model')
+        plt.plot(history_model_02.history['loss'], label='Model 02')
+        plt.plot(history_model_03.history['loss'], label='Model 03')
+        plt.plot(history_model_04.history['loss'], label='Model 04')
+        plt.plot(history_model_05.history['loss'], label='Model 05')
+        plt.plot(history_model_06.history['loss'], label='Model 06')
+        plt.plot(history_model_07.history['loss'], label='Model 07')
+
+        plt.legend()
+        plt.grid(True)
+        plt.tight_layout()
+        plt.show()
 
 
 # Convert datetime string to hour, day, month, year
