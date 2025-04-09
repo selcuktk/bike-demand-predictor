@@ -86,7 +86,7 @@ This approach is based on two fundamental principles: a structured recipe and or
 ![couırse2 video3 basic recipe](https://github.com/user-attachments/assets/dd0b4bb4-be9d-48df-b66a-990219e2188f)
 
 - [Orthogonalization Principle](https://www.youtube.com/watch?v=UEtvV1D6B3s&t=35s)
-![orthogonalization-notes](https://github.com/user-attachments/assets/56ee576e-99b5-41bf-a740-a87fcf4a2262)
+![orthogonalization-notes](https://github.com/user-attachments/assets/55c4fda9-bfb1-47f7-9e83-a1cde3db82ad)
 
 Firstly, one starter model is implemented and the path on the recipe is followed considering orthogonalization logic in the notes. After creating the starter classifier, considering parameters, different versions of it, are created.
 
@@ -113,10 +113,11 @@ Firstly, one starter model is implemented and the path on the recipe is followed
 
 - On the other hand, it can be said that the starter model is fitted well on training set (MAE ~13 is pretty small considering the average target is ~191). However there is variance problem. Because mean absolute error of test data is 116% more than mean absolute error of train data.
 
-3. According to the mentioned recipe, there are 3 options more data, regularization or different NN architectures. On this step regularization will be applied on the model.
+3. According to the mentioned recipe, there are 3 options such that more data, regularization or different NN architectures. On this step regularization will be applied on the model.
 
 ![stats3](https://github.com/user-attachments/assets/a8d71543-b25c-46aa-b27e-9429c310dbcf)
-![stats4](https://github.com/user-attachments/assets/a9c5899b-f003-4b17-ae3a-c0f9db1c6339)
+![stats4](https://github.com/user-attachments/assets/e108af80-ff9e-4971-bcb6-cb649d42a9cd)
+
 
 After regularization steps, it can be fairly said that high variance situation is fixed, mean squared error value of test is higher compared to train data. It means predictions of train is more stable compared to test. Having higher standard deviation on the errors is normal for a test data compared to training data.
 
@@ -124,3 +125,18 @@ After regularization steps, it can be fairly said that high variance situation i
 ![tuning](https://github.com/user-attachments/assets/7c0a323c-cef8-4396-8cbd-e7ab90490a11)
 - Considering the source above, following 6 new model are created.
 ![models](https://github.com/user-attachments/assets/eb8f67f2-728b-4501-a01e-f8c68281064b)
+
+5. [Output](https://github.com/user-attachments/assets/d6082705-6718-46a0-bfb4-db19ee6be04b) and Error Graphs
+![mae_graph](https://github.com/user-attachments/assets/a892a812-842a-4a18-a14b-0705e050258e)
+![mse graph](https://github.com/user-attachments/assets/2f0424a7-0f72-45b7-bf40-b28b01416b0d)
+
+6. Model Selection Based on Evaluation Metrics
+
+![stats_models](https://github.com/user-attachments/assets/cd24221c-3b10-45e6-9e73-bff387c0d4f9)
+- Final results on the models can be seen above. Now, an evaluation metric is going to improved. 
+- Humans are bad at estimating this numarical data compared to image classification tasks. Therefore try to decide Bayes error considering human level performance is not useful in this project. Also there is no certain way to decide Bayes error such deciding by considering similar projects. So we are going to decide a goal and put that goal into a metric. 
+- There are 3 priorities for the metric (in order of importance): 
+    1. Test MAE (accuracy on unseen data)
+    2. MAE Variance (stability/generalization)
+    3. Test MSE (for avoiding outliers)
+- Evaluation metric can be a Composite_Score = α * (Test MAE) + β * (Variance %) + γ * (Test MSE / 100) where α=0.6,  β=0.3, γ=0.1
