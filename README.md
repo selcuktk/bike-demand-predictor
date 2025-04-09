@@ -12,7 +12,7 @@ Bike Demand Predictor is a deep learning project designed to estimate number of 
 
 ## Installation
 
-- Programming language used and its version: Python 3.8.0
+- Programming language used and its version: Python 3.8.0  (pip 25.0.1 used)
 
 - Install Bike Demand Predictor with Git and Python
 
@@ -22,18 +22,20 @@ cd bike-demand-predictor
 ```
 - Install required libraries:
 ```bash
-pip install absl-py==2.2.1 astunparse==1.6.3 cachetools==5.5.2 certifi==2025.1.31 charset-normalizer==3.4.1 flatbuffers==2.0.7 gast==0.4.0 google-auth==2.38.0 google-auth-oauthlib==0.4.6 google-pasta==0.2.0 grpcio==1.70.0 h5py==3.11.0 idna==3.10 importlib_metadata==8.5.0 joblib==1.4.2 keras==2.7.0 Keras-Preprocessing==1.1.2 libclang==18.1.1 Markdown==3.7 MarkupSafe==2.1.5 numpy==1.24.4 oauthlib==3.2.2 opt_einsum==3.4.0 pip==25.0.1 protobuf==3.19.0 pyasn1==0.6.1 pyasn1_modules==0.4.2 requests==2.32.3 requests-oauthlib==2.0.0 rsa==4.9 scikit-learn==1.3.2 scipy==1.10.1 setuptools==41.2.0 six==1.17.0 tensorboard==2.7.0 tensorboard-data-server==0.6.1 tensorboard-plugin-wit==1.8.1 tensorflow==2.7.0 tensorflow-estimator==2.7.0 tensorflow-io-gcs-filesystem==0.31.0 termcolor==2.4.0 threadpoolctl==3.5.0 typing_extensions==4.13.0 urllib3==2.2.3 Werkzeug==3.0.6 wheel==0.45.1 wrapt==1.17.2 zipp==3.20.2
+pip install absl-py==2.2.1 astunparse==1.6.3 cachetools==5.5.2 certifi==2025.1.31 charset-normalizer==3.4.1 cycler==0.12.1 flatbuffers==2.0.7 fonttools==4.57.0 gast==0.4.0 google-auth==2.38.0 google-auth-oauthlib==0.4.6 google-pasta==0.2.0 grpcio==1.70.0 h5py==3.11.0 idna==3.10 importlib_metadata==8.5.0 joblib==1.4.2 keras==2.7.0 Keras-Preprocessing==1.1.2 kiwisolver==1.4.7 libclang==18.1.1 Markdown==3.7 MarkupSafe==2.1.5 matplotlib==3.5.3 numpy==1.24.4 oauthlib==3.2.2 opt_einsum==3.4.0 packaging==24.2 pandas==2.0.3 pillow==10.4.0 protobuf==3.19.0 pyasn1==0.6.1 pyasn1_modules==0.4.2 pyparsing==3.1.4 python-dateutil==2.9.0.post0 pytz==2025.2 requests==2.32.3 requests-oauthlib==2.0.0 rsa==4.9 scikit-learn==1.3.2 scipy==1.10.1 six==1.17.0 tensorboard==2.7.0 tensorboard-data-server==0.6.1 tensorboard-plugin-wit==1.8.1 tensorflow==2.7.0 tensorflow-estimator==2.7.0 tensorflow-io-gcs-filesystem==0.31.0 termcolor==2.4.0 threadpoolctl==3.5.0 typing_extensions==4.13.0 tzdata==2025.2 ucimlrepo==0.0.7 urllib3==2.2.3 Werkzeug==3.0.6 wheel==0.45.1 wrapt==1.17.2 zipp==3.20.2
 ```
 - Version of the used libraries
 ```bash
 Package                      Version
----------------------------- ---------
+---------------------------- -----------
 absl-py                      2.2.1
 astunparse                   1.6.3
 cachetools                   5.5.2
 certifi                      2025.1.31
 charset-normalizer           3.4.1
+cycler                       0.12.1
 flatbuffers                  2.0.7
+fonttools                    4.57.0
 gast                         0.4.0
 google-auth                  2.38.0
 google-auth-oauthlib         0.4.6
@@ -45,16 +47,24 @@ importlib_metadata           8.5.0
 joblib                       1.4.2
 keras                        2.7.0
 Keras-Preprocessing          1.1.2
+kiwisolver                   1.4.7
 libclang                     18.1.1
 Markdown                     3.7
 MarkupSafe                   2.1.5
+matplotlib                   3.5.3
 numpy                        1.24.4
 oauthlib                     3.2.2
 opt_einsum                   3.4.0
+packaging                    24.2
+pandas                       2.0.3
+pillow                       10.4.0
 pip                          25.0.1
 protobuf                     3.19.0
 pyasn1                       0.6.1
 pyasn1_modules               0.4.2
+pyparsing                    3.1.4
+python-dateutil              2.9.0.post0
+pytz                         2025.2
 requests                     2.32.3
 requests-oauthlib            2.0.0
 rsa                          4.9
@@ -71,6 +81,8 @@ tensorflow-io-gcs-filesystem 0.31.0
 termcolor                    2.4.0
 threadpoolctl                3.5.0
 typing_extensions            4.13.0
+tzdata                       2025.2
+ucimlrepo                    0.0.7
 urllib3                      2.2.3
 Werkzeug                     3.0.6
 wheel                        0.45.1
@@ -140,3 +152,7 @@ After regularization steps, it can be fairly said that high variance situation i
     2. MAE Variance (stability/generalization)
     3. Test MSE (for avoiding outliers)
 - Evaluation metric can be a Composite_Score = α * (Test MAE) + β * (Variance %) + γ * (Test MSE / 100) where α=0.6,  β=0.3, γ=0.1
+- Following graph represents composite scores of the models
+![composite scores](https://github.com/user-attachments/assets/2949a507-84cd-4eb4-a2b1-5dd0fe7548c0)
+
+As can be seen in the graph, model 6 is the best predictor compared to other predictor models. Considering a small value between scores of model 5 and model 6, evaluation metric can be updated as customers needs after more detailed analysis.
