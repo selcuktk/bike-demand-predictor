@@ -4,6 +4,13 @@
 
 Bike Demand Predictor is a deep learning project designed to estimate number of bikes would be rented under given conditions at specific time. **This project was developed to demonstrate the programmer's knowledge of the machine learning projects process and how they apply it.** Additionally, at the end of the project, the created classifiers are evaluated.
 
+## Data
+
+The dataset used in this project is the **Bike Sharing Demand** dataset, available on Kaggle. It contains historical bike rental data from a bike-sharing system, with features such as weather conditions, date, time, and other environmental factors. The dataset is used to predict the number of bike rentals (target variable) for a given set of conditions, including features like temperature, humidity, wind speed, and season. This dataset is ideal for regression tasks, and the goal is to predict bike rental demand with high accuracy.
+
+### Dataset Link
+[Bike Sharing Demand on Kaggle](https://www.kaggle.com/competitions/bike-sharing-demand)
+
 
 ## Features
 
