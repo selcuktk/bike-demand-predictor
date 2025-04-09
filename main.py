@@ -5,6 +5,7 @@ from tensorflow.keras import layers
 from tensorflow import keras
 import matplotlib.pyplot as plt
 
+
 class Main:
     @staticmethod
     def main():
@@ -83,16 +84,17 @@ class Main:
         )
 
         history_starter = starter_model.fit(x_train, y_train,
-                                    batch_size=32, epochs=500, verbose=0)
+                                            batch_size=32, epochs=500, verbose=0)
 
         print("Starter Model:")
         print("Starter Model Training Results:")
-        starter_model.evaluate(x_train, y_train, verbose=2)
+        train_mse_starter, train_mae_starter = starter_model.evaluate(
+            x_train, y_train, verbose=2)
         print("Starter Model Test Results")
-        starter_model.evaluate(x_test, y_test, verbose=2)
+        test_mse_starter, test_mae_starter = starter_model.evaluate(
+            x_test, y_test, verbose=2)
 
         print(history_starter.history.keys())
-
 
         model_02 = keras.Sequential(
             [
@@ -119,14 +121,15 @@ class Main:
             optimizer=keras.optimizers.Adam(learning_rate=0.001),
             metrics=['mae'],
         )
-        
+
         history_model_02 = model_02.fit(x_train, y_train,
-                                batch_size=32, epochs=500, verbose=0)
+                                        batch_size=32, epochs=500, verbose=0)
         print("Model 02:")
         print("Model 02 Training Results:")
-        model_02.evaluate(x_train, y_train, verbose=2)
+        train_mse_02, train_mae_02 = model_02.evaluate(
+            x_train, y_train, verbose=2)
         print("Model 02 Test Results:")
-        model_02.evaluate(x_test, y_test, verbose=2)
+        test_mse_02, test_mae_02 = model_02.evaluate(x_test, y_test, verbose=2)
 
         model_03 = keras.Sequential(
             [
@@ -155,13 +158,14 @@ class Main:
         )
 
         history_model_03 = model_03.fit(x_train, y_train,
-                                batch_size=32, epochs=500, verbose=0)
+                                        batch_size=32, epochs=500, verbose=0)
 
         print("Model 03:")
         print("Model 03 Training Results:")
-        model_03.evaluate(x_train, y_train, verbose=2)
+        train_mse_03, train_mae_03 = model_03.evaluate(
+            x_train, y_train, verbose=2)
         print("Model 03 Test Results:")
-        model_03.evaluate(x_test, y_test, verbose=2)
+        test_mse_03, test_mae_03 = model_03.evaluate(x_test, y_test, verbose=2)
 
         model_04 = keras.Sequential(
             [
@@ -190,13 +194,14 @@ class Main:
         )
 
         history_model_04 = model_04.fit(x_train, y_train,
-                                batch_size=1024, epochs=500, verbose=0)
+                                        batch_size=1024, epochs=500, verbose=0)
 
         print("Model 04:")
         print("Model 04 Training Results:")
-        model_04.evaluate(x_train, y_train, verbose=2)
+        train_mse_04, train_mae_04 = model_04.evaluate(
+            x_train, y_train, verbose=2)
         print("Model 04 Test Results:")
-        model_04.evaluate(x_test, y_test, verbose=2)
+        test_mse_04, test_mae_04 = model_04.evaluate(x_test, y_test, verbose=2)
 
         model_05 = keras.Sequential(
             [
@@ -225,13 +230,14 @@ class Main:
         )
 
         history_model_05 = model_05.fit(x_train, y_train,
-                                batch_size=256, epochs=500, verbose=0)
+                                        batch_size=256, epochs=500, verbose=0)
 
         print("Model 05:")
         print("Model 05 Training Results:")
-        model_05.evaluate(x_train, y_train, verbose=2)
+        train_mse_05, train_mae_05 = model_05.evaluate(
+            x_train, y_train, verbose=2)
         print("Model 05 Test Results:")
-        model_05.evaluate(x_test, y_test, verbose=2)
+        test_mse_05, test_mae_05 = model_05.evaluate(x_test, y_test, verbose=2)
 
         model_06 = keras.Sequential(
             [
@@ -260,12 +266,13 @@ class Main:
         )
 
         history_model_06 = model_06.fit(x_train, y_train,
-                                batch_size=32, epochs=500, verbose=0)
+                                        batch_size=32, epochs=500, verbose=0)
         print("Model 06:")
         print("Model 06 Training Results:")
-        model_06.evaluate(x_train, y_train, verbose=2)
+        train_mse_06, train_mae_06 = model_06.evaluate(
+            x_train, y_train, verbose=2)
         print("Model 06 Test Results:")
-        model_06.evaluate(x_test, y_test, verbose=2)
+        test_mse_06, test_mae_06 = model_06.evaluate(x_test, y_test, verbose=2)
 
         model_07 = keras.Sequential(
             [
@@ -293,12 +300,13 @@ class Main:
             metrics=['mae'],
         )
         history_model_07 = model_07.fit(x_train, y_train,
-                                batch_size=32, epochs=500, verbose=0)
+                                        batch_size=32, epochs=500, verbose=0)
         print("Model 07:")
         print("Model 07 Training Results:")
-        model_07.evaluate(x_train, y_train, verbose=2)
+        train_mse_07, train_mae_07 = model_07.evaluate(
+            x_train, y_train, verbose=2)
         print("Model 07 Test Results:")
-        model_07.evaluate(x_test, y_test, verbose=2)
+        test_mse_07, test_mae_07 = model_07.evaluate(x_test, y_test, verbose=2)
 
         # MAE Plot
         plt.figure(figsize=(10, 6))
@@ -337,6 +345,37 @@ class Main:
         plt.grid(True)
         plt.tight_layout()
         plt.show()
+
+        # https://github.com/user-attachments/assets/cd24221c-3b10-45e6-9e73-bff387c0d4f9
+        statistics_models = np.array([
+            [train_mse_starter, test_mse_starter, train_mae_starter, test_mae_starter, ((
+                test_mae_starter-train_mae_starter)*100/train_mae_starter)],                       # Starter Model
+            [train_mse_02, test_mse_02, train_mae_02, test_mae_02, ((
+                test_mae_02-train_mae_02)*100/train_mae_02)],                                      # Model 02
+            [train_mse_03, test_mse_03, train_mae_03, test_mae_03, ((
+                test_mae_03-train_mae_03)*100/train_mae_03)],                                      # Model 03
+            [train_mse_04, test_mse_04, train_mae_04, test_mae_04, ((
+                test_mae_04-train_mae_04)*100/train_mae_04)],                                      # Model 04
+            [train_mse_05, test_mse_05, train_mae_05, test_mae_05, ((
+                test_mae_05-train_mae_05)*100/train_mae_05)],                                      # Model 05
+            [train_mse_06, test_mse_06, train_mae_06, test_mae_06, ((
+                test_mae_06-train_mae_06)*100/train_mae_06)],                                      # Model 06
+            [train_mse_07, test_mse_07, train_mae_07, test_mae_07, ((
+                test_mae_02-train_mae_07)*100/train_mae_07)],                                      # Model 07
+        ])
+
+        # Extract relevant columns
+        test_mse = statistics_models[:, 1]
+        test_mae = statistics_models[:, 3]
+        variance = statistics_models[:, 4]
+
+        # Weights
+        alpha = 0.6
+        beta = 0.3
+        gamma = 0.1
+
+        # Composite Score Calculation
+        composite_scores = (alpha * test_mae) + (beta * variance) + (gamma * (test_mse / 100))
 
 
 # Convert datetime string to hour, day, month, year
